@@ -13,7 +13,7 @@ namespace CodeEditor
 		public Font font = new Font();
 		public int fontSize = 24;
 		public int lineSize = (int)(fontSize*1.2f);
-		public float spaceLength = fontSize*0.7f;
+		public float spaceLength = fontSize*0.55f;
 		TextEditor editor = new TextEditor();
 
 		public this()
@@ -46,7 +46,16 @@ namespace CodeEditor
 				editor.Backspace();
 			}
 			else if(evt.keysym.sym == .RETURN){
-				editor.AddText("\n");
+				editor.InsertText("\n");
+			}
+			else if(evt.keysym.sym == .TAB){
+				editor.InsertText("\t");
+			}
+			else if(evt.keysym.sym == .LEFT){
+				editor.MoveCursorLeft();
+			}
+			else if(evt.keysym.sym == .RIGHT){
+				editor.MoveCursorRight();
 			}
 		}
 
@@ -59,7 +68,7 @@ namespace CodeEditor
 					}
 					text.Append((char8)evt.text.text[i]);
 				}
-				editor.AddText(text);
+				editor.InsertText(text);
 			}
 		}
 
