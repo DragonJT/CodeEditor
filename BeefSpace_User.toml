@@ -43,12 +43,12 @@ Type = "TabbedView"
 
 [[MainDockingFrame.DockedWidgets.DockedWidgets.Tabs]]
 TabLabel = "Disassembly"
-TabWidth = 110.0
+TabWidth = 120.0
 Type = "DisassemblyPanel"
 
 [[MainDockingFrame.DockedWidgets.DockedWidgets.Tabs]]
 TabLabel = "BitmapFont.bf"
-TabWidth = 120.5
+TabWidth = 110.5
 Type = "SourceViewPanel"
 FilePath = "c:\\Program Files\\BeefLang\\BeefLibs\\SDL2\\src\\BitmapFont.bf"
 ProjectName = "SDL2"

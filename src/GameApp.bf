@@ -4,17 +4,27 @@ using System.Collections;
 
 namespace CodeEditor
 {
+	static{
+		public static GameApp gameApp;
+	}
+
 	class GameApp : SDLApp
 	{
-		Font font = new Font();
+		public Font font = new Font();
+		public int fontSize = 24;
+		public int lineSize = (int)(fontSize*1.2f);
+		public float spaceLength = fontSize*0.7f;
+		TextEditor editor = new TextEditor();
 
 		public this()
 		{
+			gameApp = this;
 		}
 
 		public ~this()
 		{
 			delete font;
+			delete editor;
 		}
 
 		public override void Init()
@@ -27,11 +37,30 @@ namespace CodeEditor
 		{
 			SDL.SetRenderDrawColor(mRenderer, 200, 200, 200, 255);
 			SDL.RenderClear(mRenderer);
-			DrawString(font, 100, 100, "HelloWorld", .(0,0,0,255));
+			editor.Draw();
 		}
 
 		public override void KeyDown(SDL.KeyboardEvent evt)
 		{
+			if(evt.keysym.sym == .BACKSPACE){
+				editor.Backspace();
+			}
+			else if(evt.keysym.sym == .RETURN){
+				editor.AddText("\n");
+			}
+		}
+
+		public override void HandleEvent(SDL.Event evt){
+			if(evt.type == SDL.EventType.TextInput){
+				String text = scope String();
+				for(var i=0;i<32;i++){
+					if(evt.text.text[i]==0){
+						break;
+					}
+					text.Append((char8)evt.text.text[i]);
+				}
+				editor.AddText(text);
+			}
 		}
 
 		public override void Update()
