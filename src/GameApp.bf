@@ -35,7 +35,7 @@ namespace CodeEditor
 
 		public override void Draw()
 		{
-			SDL.SetRenderDrawColor(mRenderer, 200, 200, 200, 255);
+			SDL.SetRenderDrawColor(mRenderer, 55, 55, 55, 255);
 			SDL.RenderClear(mRenderer);
 			editor.Draw();
 		}
